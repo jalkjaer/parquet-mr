@@ -35,6 +35,7 @@ import org.apache.thrift.transport.TIOStreamTransport;
 import parquet.format.ColumnChunk;
 import parquet.format.DataPageHeader;
 import parquet.format.Encoding;
+import parquet.format.FieldLevelEncoding;
 import parquet.format.FieldRepetitionType;
 import parquet.format.FileMetaData;
 import parquet.format.KeyValue;
@@ -393,8 +394,8 @@ public class ParquetMetadataConverter {
     pageHeader.data_page_header = new DataPageHeader(
         valueCount,
         getEncoding(encoding),
-        Encoding.RLE, // TODO: manage several encodings
-        Encoding.BIT_PACKED);
+        FieldLevelEncoding.RLE, // TODO: manage several encodings
+        FieldLevelEncoding.BIT_PACKED);
     return pageHeader;
   }
 
